@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/brianium/mnemonic/entropy"
+	"github.com/LinX-OpenNetwork/mnemonic/entropy"
 )
 
 // Mnemonic represents a collection of human readable words

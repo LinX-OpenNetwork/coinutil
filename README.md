@@ -1,7 +1,7 @@
 # Mnemonic
-[![Build Status](https://travis-ci.org/brianium/mnemonic.svg?branch=master)](https://travis-ci.org/brianium/mnemonic)
-[![Go Report Card](https://goreportcard.com/badge/github.com/brianium/mnemonic)](https://goreportcard.com/report/github.com/brianium/mnemonic)
-[![GoDoc](https://godoc.org/github.com/brianium/mnemonic?status.svg)](https://godoc.org/github.com/brianium/mnemonic)
+[![Build Status](https://travis-ci.org/LinX-OpenNetwork/mnemonic.svg?branch=master)](https://travis-ci.org/LinX-OpenNetwork/mnemonic)
+[![Go Report Card](https://goreportcard.com/badge/github.com/LinX-OpenNetwork/mnemonic)](https://goreportcard.com/report/github.com/LinX-OpenNetwork/mnemonic)
+[![GoDoc](https://godoc.org/github.com/LinX-OpenNetwork/mnemonic?status.svg)](https://godoc.org/github.com/LinX-OpenNetwork/mnemonic)
 
 A BIP 39 implementation in Go.
 
@@ -11,7 +11,7 @@ Features:
 * All languages mentioned in the [proposal](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) supported.
 * 128 bit (12 words) through 256 bit (24 words) entropy.
 
-## [`mnemonic`](https://godoc.org/github.com/brianium/mnemonic) package
+## [`mnemonic`](https://godoc.org/github.com/LinX-OpenNetwork/mnemonic) package
 
 * Generates human readable sentences and the seeds derived from them.
 * Supports all languages mentioned in the [BIP 39 proposal](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki).
@@ -24,7 +24,7 @@ package main
 
 import (
     "fmt"
-    "github.com/brianium/mnemonic"
+    "github.com/LinX-OpenNetwork/mnemonic"
 )
 
 func main() {
@@ -45,7 +45,7 @@ func main() {
 }
 ```
 
-## [`entropy`](https://godoc.org/github.com/brianium/mnemonic/entropy) package
+## [`entropy`](https://godoc.org/github.com/LinX-OpenNetwork/mnemonic/entropy) package
 
 * Supports generating random entropy in the range of 128-256 bits
 * Supports generating entropy from a hex string
@@ -57,8 +57,8 @@ package main
 
 import (
     "fmt"
-    "github.com/brianium/mnemonic"
-    "github.com/brianium/mnemonic/entropy"
+    "github.com/LinX-OpenNetwork/mnemonic"
+    "github.com/LinX-OpenNetwork/mnemonic/entropy"
 )
 
 func main() {
@@ -86,12 +86,12 @@ func main() {
 
 To install Mnemonic, use `go get`:
 
-    go get github.com/brianium/mnemonic
+    go get github.com/LinX-OpenNetwork/mnemonic
 
 This will then make the following packages available to you:
 
-    github.com/brianium/mnemonic
-    github.com/brianium/mnemonic/entropy
+    github.com/LinX-OpenNetwork/mnemonic
+    github.com/LinX-OpenNetwork/mnemonic/entropy
 
 Import the `mnemonic` package into your code using this template:
 
@@ -99,7 +99,7 @@ Import the `mnemonic` package into your code using this template:
 package yours
 
 import (
-  "github.com/brianium/mnemonic"
+  "github.com/LinX-OpenNetwork/mnemonic"
 )
 
 func MnemonicJam(passphrase string) {

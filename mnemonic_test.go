@@ -3,7 +3,7 @@ package mnemonic
 import (
 	"testing"
 
-	"github.com/brianium/mnemonic/entropy"
+	"github.com/LinX-OpenNetwork/mnemonic/entropy"
 )
 
 func TestEnglishMnemonics(t *testing.T) {
