@@ -1,11 +1,11 @@
-package mnemonic
+package bip39
 
 import (
 	"fmt"
 	"strconv"
 	"strings"
 
-	"github.com/LinX-OpenNetwork/mnemonic/entropy"
+	"github.com/LinX-OpenNetwork/coinutil/entropy"
 )
 
 // Mnemonic represents a collection of human readable words

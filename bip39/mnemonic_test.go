@@ -3,7 +3,7 @@ package bip39
 import (
 	"testing"
 
-	"github.com/LinX-OpenNetwork/mnemonic/entropy"
+	"github.com/LinX-OpenNetwork/coinutil/entropy"
 )
 
 func TestEnglishMnemonics(t *testing.T) {

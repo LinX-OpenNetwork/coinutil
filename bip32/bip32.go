@@ -1,4 +1,4 @@
-package mnemonic
+package bip32
 
 import (
 	"bytes"
