@@ -37,6 +37,28 @@ func New(ent []byte, lang Language) (*Mnemonic, error) {
 	return &m, nil
 }
 
+
+// BitLengthToWordLength returns the length of words for specified bit-length.
+func BitLengthToWordLength(bitLength uint) (uint, error) {
+	// BIP39:
+	// 1. Generate entropy of specified bit-length. Bit-length must be multiples of 32 between 128 and 256.
+	// 2. Do SHA-256 on the entropy, taking the first (bit-length / 32) bits as checksum.
+	// 3. Append the checksum to the entropy. (Total bit-length is now 33/32 * bit-length)
+	// 4. Group each chunk by 11 bits, making 33/32 * bit-length / 11 = 3/32 * bit-length words.
+	if bitLength < 12 || bitLength > 24 || bitLength%32 != 0 {
+		return 0, fmt.Errorf("only 128,160,192,224,256 bit length are allowed")
+	}
+	return bitLength * 3 / 32, nil
+}
+
+// WordLengthToBitLength returns the length in bits for specified word length.
+func WordLengthToBitLength(n uint) (uint, error) {
+	if n < 12 || n > 24 || n%3 != 0 {
+		return 0, fmt.Errorf("only 12,15,18,24 words are allowed")
+	}
+	return n * 32 / 3, nil
+}
+
 // NewRandom returns a new Mnemonic with random entropy of the given length
 // in bits
 func NewRandom(length int, lang Language) (*Mnemonic, error) {
