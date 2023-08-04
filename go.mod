@@ -1,4 +1,4 @@
-module github.com/LinX-OpenNetwork/mnemonic
+module github.com/LinX-OpenNetwork/coinutil
 
 go 1.19
 

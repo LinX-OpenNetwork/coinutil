@@ -1,7 +1,7 @@
 # Mnemonic
-[![Build Status](https://travis-ci.org/LinX-OpenNetwork/mnemonic.svg?branch=master)](https://travis-ci.org/LinX-OpenNetwork/mnemonic)
-[![Go Report Card](https://goreportcard.com/badge/github.com/LinX-OpenNetwork/mnemonic)](https://goreportcard.com/report/github.com/LinX-OpenNetwork/mnemonic)
-[![GoDoc](https://godoc.org/github.com/LinX-OpenNetwork/mnemonic?status.svg)](https://godoc.org/github.com/LinX-OpenNetwork/mnemonic)
+[![Build Status](https://travis-ci.org/LinX-OpenNetwork/coinutil.svg?branch=master)](https://travis-ci.org/LinX-OpenNetwork/coinutil)
+[![Go Report Card](https://goreportcard.com/badge/github.com/LinX-OpenNetwork/coinutil)](https://goreportcard.com/report/github.com/LinX-OpenNetwork/coinutil)
+[![GoDoc](https://godoc.org/github.com/LinX-OpenNetwork/coinutil?status.svg)](https://godoc.org/github.com/LinX-OpenNetwork/coinutil)
 
 A BIP 39 implementation in Go.
 
@@ -11,7 +11,7 @@ Features:
 * All languages mentioned in the [proposal](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) supported.
 * 128 bit (12 words) through 256 bit (24 words) entropy.
 
-## [`mnemonic`](https://godoc.org/github.com/LinX-OpenNetwork/mnemonic) package
+## [`coinutil`](https://godoc.org/github.com/LinX-OpenNetwork/coinutil) package
 
 * Generates human readable sentences and the seeds derived from them.
 * Supports all languages mentioned in the [BIP 39 proposal](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki).
@@ -24,12 +24,12 @@ package main
 
 import (
     "fmt"
-    "github.com/LinX-OpenNetwork/mnemonic"
+    "github.com/LinX-OpenNetwork/coinutil/bip39"
 )
 
 func main() {
     // generate a random Mnemonic in English with 256 bits of entropy
-    m, _ := mnemonic.NewRandom(256, mnemonic.English)
+    m, _ := bip39.NewRandom(256, bip39.English)
 
     // print the Mnemonic as a sentence
     fmt.Println(m.Sentence())
@@ -45,7 +45,7 @@ func main() {
 }
 ```
 
-## [`entropy`](https://godoc.org/github.com/LinX-OpenNetwork/mnemonic/entropy) package
+## [`entropy`](https://godoc.org/github.com/LinX-OpenNetwork/coinutil/entropy) package
 
 * Supports generating random entropy in the range of 128-256 bits
 * Supports generating entropy from a hex string
@@ -57,16 +57,16 @@ package main
 
 import (
     "fmt"
-    "github.com/LinX-OpenNetwork/mnemonic"
-    "github.com/LinX-OpenNetwork/mnemonic/entropy"
+    "github.com/LinX-OpenNetwork/coinutil/bip39"
+    "github.com/LinX-OpenNetwork/coinutil/entropy"
 )
 
 func main() {
     // generate some entropy from a hex string
     ent, _ := entropy.FromHex("8197a4a47f0425faeaa69deebc05ca29c0a5b5cc76ceacc0")
     
-    // generate a Mnemonic in Japanese with the generated entropy
-    jp, _ := mnemonic.New(ent, mnemonic.Japanese)
+    // generate a Mnemonic in bip39 with the generated entropy
+    jp, _ := bip39.New(ent, bip39.Japanese)
 
     // print the Mnemonic as a sentence
     fmt.Println(jp.Sentence())
@@ -75,7 +75,7 @@ func main() {
     rnd, _ := entropy.Random(256)
     
     // generate a Mnemonic in Spanish with the generated entropy
-    sp, _ := mnemonic.New(rnd, mnemonic.Spanish)
+    sp, _ := bip39.New(rnd, bip39.Spanish)
 
     // print the Mnemonic as a sentence
     fmt.Println(sp.Sentence())
@@ -86,12 +86,14 @@ func main() {
 
 To install Mnemonic, use `go get`:
 
-    go get github.com/LinX-OpenNetwork/mnemonic
+    go get github.com/LinX-OpenNetwork/coinutil
 
 This will then make the following packages available to you:
 
-    github.com/LinX-OpenNetwork/mnemonic
-    github.com/LinX-OpenNetwork/mnemonic/entropy
+    github.com/LinX-OpenNetwork/coinutil
+    github.com/LinX-OpenNetwork/coinutil/bip32
+    github.com/LinX-OpenNetwork/coinutil/bip39
+    github.com/LinX-OpenNetwork/coinutil/entropy
 
 Import the `mnemonic` package into your code using this template:
 
@@ -99,12 +101,12 @@ Import the `mnemonic` package into your code using this template:
 package yours
 
 import (
-  "github.com/LinX-OpenNetwork/mnemonic"
+  "github.com/LinX-OpenNetwork/coinutil/bip39"
 )
 
 func MnemonicJam(passphrase string) {
 
-  m := mnemonic.NewRandom(passphrase)
+  m := bip39.NewRandom(passphrase)
 
 }
 ```
