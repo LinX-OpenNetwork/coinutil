@@ -27,21 +27,21 @@ var (
 
 	// ErrSerializedKeyWrongSize is returned when trying to deserialize a key that
 	// has an incorrect length
-	ErrSerializedKeyWrongSize = errors.New("Serialized keys should by exactly 82 bytes")
+	ErrSerializedKeyWrongSize = errors.New("serialized keys should by exactly 82 bytes")
 
 	// ErrHardnedChildPublicKey is returned when trying to create a harded child
 	// of the public key
-	ErrHardnedChildPublicKey = errors.New("Can't create hardened child for public key")
+	ErrHardnedChildPublicKey = errors.New("can't create hardened child for public key")
 
 	// ErrInvalidChecksum is returned when deserializing a key with an incorrect
 	// checksum
-	ErrInvalidChecksum = errors.New("Checksum doesn't match")
+	ErrInvalidChecksum = errors.New("checksum doesn't match")
 
 	// ErrInvalidPrivateKey is returned when a derived private key is invalid
-	ErrInvalidPrivateKey = errors.New("Invalid private key")
+	ErrInvalidPrivateKey = errors.New("invalid private key")
 
 	// ErrInvalidPublicKey is returned when a derived public key is invalid
-	ErrInvalidPublicKey = errors.New("Invalid public key")
+	ErrInvalidPublicKey = errors.New("invalid public key")
 )
 
 // Key represents a bip32 extended key
@@ -51,19 +51,19 @@ type Key struct {
 	ChildNumber []byte // 4 bytes
 	FingerPrint []byte // 4 bytes
 	ChainCode   []byte // 32 bytes
-	Depth       byte   // 1 bytes
+	Depth       byte   // 1 byte
 	IsPrivate   bool   // unserialized
 }
 
 // NewMasterKey creates a new master extended key from a seed
 func NewMasterKey(seed []byte) (*Key, error) {
 	// Generate key and chaincode
-	hmac := hmac.New(sha512.New, []byte("Bitcoin seed"))
-	_, err := hmac.Write(seed)
+	hash := hmac.New(sha512.New, []byte("Bitcoin seed"))
+	_, err := hash.Write(seed)
 	if err != nil {
 		return nil, err
 	}
-	intermediary := hmac.Sum(nil)
+	intermediary := hash.Sum(nil)
 
 	// Split it into our key and chain code
 	keyBytes := intermediary[:32]
@@ -164,12 +164,12 @@ func (key *Key) getIntermediary(childIdx uint32) ([]byte, error) {
 	}
 	data = append(data, childIndexBytes...)
 
-	hmac := hmac.New(sha512.New, key.ChainCode)
-	_, err := hmac.Write(data)
+	hash := hmac.New(sha512.New, key.ChainCode)
+	_, err := hash.Write(data)
 	if err != nil {
 		return nil, err
 	}
-	return hmac.Sum(nil), nil
+	return hash.Sum(nil), nil
 }
 
 // PublicKey returns the public version of key or return a copy
@@ -192,7 +192,7 @@ func (key *Key) PublicKey() *Key {
 	}
 }
 
-// Serialize a Key to a 78 byte byte slice
+// Serialize a Key to a 78-byte byte slice
 func (key *Key) Serialize() ([]byte, error) {
 	// Private keys should be prepended with a single null byte
 	keyBytes := key.Key
