@@ -5,10 +5,10 @@ import (
 	"crypto/sha256"
 	"encoding/binary"
 	"fmt"
+	"github.com/LinX-OpenNetwork/coinutil/basen"
 	"io"
 	"math/big"
 
-	"github.com/FactomProject/basen"
 	btcutil "github.com/FactomProject/btcutilecc"
 	"golang.org/x/crypto/ripemd160"
 )
@@ -189,9 +189,7 @@ func validateChildPublicKey(key []byte) error {
 	return nil
 }
 
-//
 // Numerical
-//
 func uint32Bytes(i uint32) []byte {
 	bytes := make([]byte, 4)
 	binary.BigEndian.PutUint32(bytes, i)
